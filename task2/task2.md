@@ -57,12 +57,9 @@ docker run --name idsa-nginx -p 8080:80 -d nginx
 ```
 docker-compose up -d
 ```
-2. Открываем pgadmin командой
-```
-open localhost:8080
-```
+2. Открываем pgadmin по `http://localhost:8081`
 3. Входим по почте `idsa@hse.ru` и паролю `admin`
-3. Нажимаем `Add new server`, устанавливаем в поля `Connection host name`, `port`, `maintenance`, `username` и `password` значения `postgres`, `5432`, `db`, `idsa`, `admin`
+3. Нажимаем `Add new server`, добавляем имя, нажимаем `Connection`, устанавливаем в поля `host name`, `port`, `maintenance database`, `username` и `password` значения `postgres`, `5432`, `db`, `idsa`, `admin`
 4. Создаем таблицу 
 ```
 create table test_table(
