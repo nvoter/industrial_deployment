@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:latest # последняя версия образа постгрескул
+    environment: # переменные окружения
+      POSTGRES_DB: db
+      POSTGRES_USER: idsa
+      POSTGRES_PASSWORD: admin
+    volumes: # подключаем вольюмы 
+      - tmp:tmp:/var/lib/postgresql/data
+    ports: # проброс портов
+      - "5432:5432"
+    networks: # указываем сеть для связи с pgadmin
+      - db_network
+  
+  pgadmin:
+    image: dpage/pgadmin4 # образ с докер хаба
+    environment: # тоже настройки окружения но теперь нужные для настройки пгадмина
+      PGADMIN_DEFAULT_EMAIL: idsa@hse.ru
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8081:80" # порты
+    networks:
+      - db_network # подключаемся к той же сети
+    depends_on:
+      - postgres # пгадмин запустится только после того как поднимется постгрес
+
+volumes: # создаем вольюм для постгреса
+  tmp:
+
+networks: # создаем сеть для связи
+  db_network:
+    driver: bridge
