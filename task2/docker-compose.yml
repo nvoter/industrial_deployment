@@ -6,7 +6,7 @@ services:
       POSTGRES_USER: idsa
       POSTGRES_PASSWORD: admin
     volumes: # подключаем вольюмы 
-      - postgres_data:/var/lib/postgresql/data
+      - tmp:/var/lib/postgresql/data
     ports: # проброс портов
       - "5432:5432"
     networks: # указываем сеть для связи с pgadmin
